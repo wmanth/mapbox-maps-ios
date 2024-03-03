@@ -4,8 +4,8 @@
 import PackageDescription
 import Foundation
 
-let coreMaps = MapsDependency.coreMaps(version: "11.2.0")
-let common = MapsDependency.common(version: "24.2.0")
+let coreMaps = MapsDependency.coreMaps(version: "11.2.0-1")
+let common = MapsDependency.common(version: "24.2.0-1")
 
 let mapboxMapsPath: String? = nil
 
@@ -91,14 +91,14 @@ struct MapsDependency {
         return MapsDependency(name: "MapboxCoreMaps", version: version, checksum: checksum, isSnapshot: isSnapshot,
                               repositoryName: "mapbox-core-maps-ios",
                               registryProjectName: "mobile-maps-core",
-                              registryFileName: "MapboxCoreMaps.xcframework-dynamic.zip")
+                              registryFileName: "MapboxCoreMaps")
     }
 
     static func common(version: String, checksum: String? = nil, isSnapshot: Bool? = nil) -> MapsDependency {
         return MapsDependency(name: "MapboxCommon", version: version, checksum: checksum, isSnapshot: isSnapshot,
                               repositoryName: "mapbox-common-ios",
                               registryProjectName: "mapbox-common",
-                              registryFileName: "MapboxCommon.zip")
+                              registryFileName: "MapboxCommon")
     }
 
     var packageDependencies: [Package.Dependency] {
@@ -125,11 +125,11 @@ struct MapsDependency {
         }
     }
 
-    var repositoryURL: String { return "https://github.com/mapbox/\(repositoryName).git" }
+    var repositoryURL: String { return "https://github.com/wmanth/\(repositoryName).git" }
 
     var registryReleaseFolder: String { isSnapshot ? "snapshots" : "releases" }
 
     var registryURL: String {
-        return "https://api.mapbox.com/downloads/v2/\(registryProjectName)/\(registryReleaseFolder)/ios/packages/\(version)/\(registryFileName)"
+        return "https://mapbox.wmanth.net/packages/\(registryFileName)-\(version).zip"
     }
 }
